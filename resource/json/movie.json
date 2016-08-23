@@ -1,0 +1,9 @@
+var movie = { 
+"movie": [{"id":"zgssbtl","priority":"-1","image":"zgssbtl\/zgssbtl.jpg","resource":"zgssbtl\/zgssbtl.mp4","name":"﻿这个杀手不太冷"},
+{"id":"txjw","priority":"0","resource":"txjw\/txjw.3gp","image":"txjw\/txjw.jpg","name":"﻿铁血娇娃"},
+{"id":"amfy","image":"amfy\/amfy.jpg","resource":"amfy\/amfy.mp4","name":"﻿澳门风云II","priority":"1"},
+{"id":"jtmdt","resource":"jtmdt\/jtmdt.3gp","image":"jtmdt\/jtmdt.jpg","name":"﻿惊天魔道团","priority":"2"},
+{"id":"ccnn","image":"ccnn\/ccnn.jpg","resource":"ccnn\/ccnn.rmvb","name":"﻿匆匆那年","priority":"3"},
+{"id":"mbsh","image":"mbsh\/mbsh.jpg","resource":"mbsh\/mbsh.rmvb","name":"﻿妙笔生花","priority":"5"},
+{"id":"xtjpg","priority":"7","image":"xtjpg\/xtjpg.jpg","resource":"xtjpg\/xtjpg.mp4","name":"﻿新特警判官"}] 
+};

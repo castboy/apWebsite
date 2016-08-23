@@ -1,0 +1,6 @@
+var  = { 
+"": {"ad":{"id":"ad","name":"banner"},
+"app":{"id":"app","name":""},
+"json":{"id":"json","name":"pvtotal-mac-time"},
+"movie":{"id":"movie","name":""}} 
+};

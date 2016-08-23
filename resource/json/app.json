@@ -1,0 +1,7 @@
+var app = { 
+"app": [{"id":"dhxy","image":"dhxy\/dhxy.jpg","name":"﻿大话西游","priority":"100"},
+{"id":"kxxxl","image":"kxxxl\/kxxxl.jpg","name":"﻿开心消消乐","priority":"100"},
+{"id":"sklr","image":"sklr\/sklr.jpg","name":"﻿时空猎人","priority":"100"},
+{"id":"snsgz","image":"snsgz\/snsgz.jpg","name":"﻿少年三国志","priority":"100"},
+{"id":"tjxm","image":"tjxm\/tjxm.jpg","name":"﻿太极熊猫","priority":"100"}] 
+};

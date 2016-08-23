@@ -1,0 +1,90 @@
+
+<?php
+	class Data
+	{
+		function dirArray($path,&$arr)
+		{
+		    $dir = opendir($path);
+		    while(($file=readdir($dir))!==FALSE)
+		    {
+		        if($file!='.'&&$file!='..')
+		        {	           
+		            if(!is_dir($path.'/'.$file))
+		            {
+		                $arr[] = $file;
+		            }
+		            else
+		            {                 
+		                $this->dirArray($path.'/'.$file, $arr[$file]);
+		            }
+		        }
+		    }
+		}
+
+		function tempojsArray ($oldArray, $imgOpts, $resOpts, $path) {
+			$n = 0;
+			foreach ($oldArray as $key => $value) {
+				$newArray[$n]["id"] = "$key"; 
+				foreach ($value as $key1 => $value1) {
+					$ext = @end(explode(".", $value1));
+					if (in_array($ext, $imgOpts)) {
+						$newArray[$n]["image"]= "$key/$key.$ext";
+					} elseif (in_array($ext, $resOpts)) {
+						$newArray[$n]["resource"]= "$key/$key.$ext";
+					} elseif ($ext == "txt") {
+						$newArray[$n]["name"]= file_get_contents($path . "$key/$key.$ext");
+					} else {
+                        $newArray[$n]["priority"]= file_get_contents($path . "$key/priority");
+                    }
+				}
+				$n++;
+			}           
+            echo "<pre>";
+            print_r($newArray);
+            echo "</pre>";
+            
+			return $newArray;
+		}
+
+		function countArr ($oldArray) {
+			foreach ($oldArray as $key => $value) {
+				$newArray[$key]["id"] = $value["id"];
+				$newArray[$key]["name"] = $value["name"];
+				$newArray[$key]["count"] = 0;
+			}
+
+			return $newArray;
+		}
+
+		function tempojsJson ($array, $item) {
+		    $jsonString = @json_encode($array, JSON_UNESCAPED_UNICODE);
+		    $jsonString = str_replace("},", "},\n", $jsonString);
+		    
+		    return "var $item = { \n\"$item\": $jsonString \n};";      			
+		}	
+
+		function countJson ($array) {
+			$jsonString = @json_encode($array, JSON_UNESCAPED_UNICODE);
+
+			return str_replace("},", "}\n", substr($jsonString, 1, -1));
+		}	
+
+		function toFile ($file, $content) {
+			file_put_contents($file, $content);
+		}
+        
+        function build ($category, $countFile, $filter, $path) {
+            $this -> dirArray("./resource/$category", $dirArr);
+            $array = $this->tempojsArray($dirArr, $filter['image'],
+            							 $filter['resource'], $path);
+            $countArr = $this->countArr($array);
+            
+            $this -> toFile("resource/json/$category.json",
+                            $this->tempojsJson($array, $category));
+            $this -> toFile($countFile, $this -> countJson($countArr));  
+            
+        }
+        
+	}
+
+?>

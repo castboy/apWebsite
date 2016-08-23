@@ -1,0 +1,31 @@
+<?php
+		function getIp () {
+			$ip = $_SERVER["REMOTE_ADDR"];
+
+			return $ip;
+		}
+
+		function getMac ($ip) {
+			$mac = shell_exec("sudo /bin/cat /proc/net/arp |sudo /bin/grep ".$ip);
+	        preg_match('/..:..:..:..:..:../',$mac , $matches);
+	        @$mac = $matches[0];
+
+	        if (!isset($mac)) {
+	                return;
+	        }else {
+	                return $mac;
+	        }
+		}
+
+    function Free ($mac) {
+        $shell = "sudo /bin/bash userauth 1 $mac";
+        $code = shell_exec($shell);
+
+        return $code;
+    }
+
+    $ip = getIp();
+    $mac = getMac($ip);
+    Free($mac);
+?>
+    <a href="http://www.baidu.com"><button type="button" name="button">点此上网</button></a>
